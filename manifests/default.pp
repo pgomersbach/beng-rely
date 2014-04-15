@@ -6,3 +6,8 @@ class { '::ntp':
 user { 'appbeheer':
   ensure => present,
 }
+
+user { 'deploy':
+  ensure => present,
+}
+
