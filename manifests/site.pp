@@ -27,8 +27,10 @@ user { 'appbeheer':
 }
 
 user { 'deploy':
-  ensure   => present,
-  password => '$6$XDXqfHBY$gTIaTau4Ic0awD2AVHTh4nP5QAShrItpqESFbN7bq6N2Kt/Alb34QQFDhQQbyy9pQgVpON5ZsqdZSPqTwZETZ',
+  ensure     => present,
+  password   => '$6$XDXqfHBY$gTIaTau4Ic0awD2AVHTh4nP5QAShrItpqESFbN7bq6N2Kt/Alb34QQFDhQQbyy9pQgVpON5ZsqdZSPqTwZETZ',
+  groups     => 'wheel',
+  managehome => true,
 }
 
 user { 'systeembeheer':
