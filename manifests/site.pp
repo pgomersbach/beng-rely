@@ -5,11 +5,11 @@ group { 'wheel': ensure => present, }
 augeas { 'sudowheel':
   context => '/files/etc/sudoers',
   changes => [
-    'set spec[user = '%wheel']/user %wheel',
-    'set spec[user = '%wheel']/host_group/host ALL',
-    'set spec[user = '%wheel']/host_group/command ALL',
-    'set spec[user = '%wheel']/host_group/command/runas_user ALL',
-    'set spec[user = '%wheel']/host_group/command/tag NOPASSWD',
+    "set spec[user = '%wheel']/user %wheel",
+    "set spec[user = '%wheel']/host_group/host ALL",
+    "set spec[user = '%wheel']/host_group/command ALL",
+    "set spec[user = '%wheel']/host_group/command/runas_user ALL",
+    "set spec[user = '%wheel']/host_group/command/tag NOPASSWD",
     ],
 }
 
