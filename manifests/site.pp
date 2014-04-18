@@ -21,6 +21,13 @@ class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
 
+class { 'vsftpd':
+  anonymous_enable  => 'NO',
+  write_enable      => 'YES',
+  ftpd_banner       => 'BenG FTP Server',
+  chroot_local_user => 'YES',
+}
+
 user { 'appbeheer':
   ensure   => present,
   password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
