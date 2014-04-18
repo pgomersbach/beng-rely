@@ -23,18 +23,22 @@ class { '::ntp':
 
 user { 'appbeheer':
   ensure   => present,
-  password => '$6$/9ib4x/n$92gZmU11nUPSZzI7sZ/7aroEhVRFiu8a1NXBouw6ljuClz6DkwCaEXOwpC6JWlvGKA7hh7C13kq94PcPh8Ds0',
+  password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
+  groups     => 'wheel',
+  managehome => true,
 }
 
 user { 'deploy':
   ensure     => present,
-  password   => '$6$XDXqfHBY$gTIaTau4Ic0awD2AVHTh4nP5QAShrItpqESFbN7bq6N2Kt/Alb34QQFDhQQbyy9pQgVpON5ZsqdZSPqTwZETZ',
+  password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
   groups     => 'wheel',
   managehome => true,
 }
 
 user { 'systeembeheer':
   ensure   => present,
-  password => '$6$/9ib4x/n$92gZmU11nUPSZzI7sZ/7aroEhVRFiu8a1NXBouw6ljuClz6DkwCaEXOwpC6JWlvGKA7hh7C13kq94PcPh8Ds0',
+  password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
+  groups     => 'wheel',
+  managehome => true,
 }
 
