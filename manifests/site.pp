@@ -14,7 +14,7 @@ augeas { "sudowheel":
 }
 
 file {'/etc/resolv.conf':
-  source => 'puppet:///files/resolv.conf',
+  source => '/etc/puppet/files/resolv.conf',
 }
 
 class { '::ntp':
