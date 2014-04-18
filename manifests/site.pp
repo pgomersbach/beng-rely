@@ -23,6 +23,7 @@ class { '::ntp':
 
 class { '::vmwaretools':
   timesync => false,
+  version  => '9.4.0-1280544',
 }
 
 class { '::vsftpd':
