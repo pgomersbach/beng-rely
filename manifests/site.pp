@@ -21,7 +21,11 @@ class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
 
-class { 'vsftpd':
+class { '::vmwaretools':
+  timesync => false,
+}
+
+class { '::vsftpd':
   anonymous_enable   => 'NO',
   write_enable       => 'YES',
   ftpd_banner        => 'BenG FTP Server',
