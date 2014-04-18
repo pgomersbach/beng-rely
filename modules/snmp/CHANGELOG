@@ -1,0 +1,108 @@
+2013-07-13 Michael Arnold <github@razorsedge.org> - 3.0.1-1-g64f4d0d
+====================================================================
+
+
+2013-07-13 Michael Arnold <github@razorsedge.org> - 3.0.0
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (31):
+  * Clarify that this module installs the Net-SNMP software.
+  * Fix README.md title.
+  * Remove the dependency on LSB facts.
+  * Major refactor of server/trap/client classes.
+  * Templatize config files.
+  * Update example config files.
+  * Convert the remaining parameters to support ENC.
+  * Fix README.md markdown.
+  * Squash bugs via live testing.
+  * Fix trapd service on Debian.
+  * Add more Puppet tests.
+  * Add more rspec tests.
+  * Added Suse osfamily support.
+  * Renamed files directory to be samples.
+  * Fix arrow alignment to make lint happy.
+  * Add support for sysservices.
+  * Rake validate to also check ERB for syntax errors.
+  * Add support for dlmod.
+  * Implement configuration safety valves.
+  * Add agentaddress and snmptrapdaddr parameters.
+  * Refactor SNMP configs.
+  * Enhanced snmpv3_user to also create snmptrapd users.
+  * Expand Puppet versions tested in Travis-CI.
+  * Fix an Rspec error seen on Ruby 1.9.3+.
+  * Fix wyrie-trapd_extended additions to support ENC.
+  * Rename snmp_trap_addr to snmptrapdaddr.
+  * Make agentaddress an array like snmptrapdaddr.
+  * Standardize parameter->template results.
+  * Remove git-log-to-changelog from Modulefile.
+  * Update README.md with new changes.
+  * Update versions for 3.0.0 release.
+ 
+ Scott Barr <scott@barr.co.za> (3):
+  * * Extend functionality by adding class parameters:   snmp_trap_addr  
+    disable_authorization   do_not_log_traps
+  * The trap_handlers class parameter accepts any values and is directly
+    outputted to the template, essentially allowing any value to be written
+    to file. Prefix each value in trap_handler with 'traphandle' for a more
+    expected/sane result.
+  * Added forwards for notification processing.
+ 
+
+2013-06-22 Michael Arnold <github@razorsedge.org> - 2.0.0
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (20):
+  * Fix Ubuntu support to pass lint
+  * Update Travis-CI config file to test 2.7.18
+  * Update rspec tests for new rspec version.
+  * Initial Ubuntu support rspec tests
+  * Converted to puppetlabs_spec_helper.
+  * Updated .travis.yml and .gemfile.
+  * Add CHANGELOG generation during module build.
+  * Lint: fix variable not enclosed in {}.
+  * Fix Ubuntu support to pass lint
+  * Initial Ubuntu support rspec tests
+  * Do not install File['snmptrapd.sysconfig'] on Debian.
+  * Add files/snmpd.sysconfig-Debian-12.
+  * Initial Debian support rspec tests.
+  * Clean up Notes section of README.md.
+  * Use ::osfamily instead of ::operatingsystem.
+  * Convert template variables to be local.
+  * Added deprecation warnings in README.md.
+  * Fix support for snmptrapd on Debian.
+  * Update README.md.
+  * Update versions for 2.0.0 release.
+ 
+ Endre Karlson <endre.karlson@gmail.com> (2):
+  * Add Ubuntu support and fix indent
+  * Add Ubuntu support and fix indent
+ 
+ Jonathan Owens <jonathan@newrelic.com> (2):
+  * Allow overriding the list of views and accesses.
+  * Allow specifying traphandlers for trapd.
+ 
+ Santiago Piccinini <spiccinini@codigosur.org> (1):
+  * Added initial support for Debian
+ 
+
+2012-07-15 Michael Arnold <github@razorsedge.org> - 1.0.2
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (1):
+  * Bump module version for Puppet Forge release
+ 
+ Steve Huff <shuff@vecna.org> (1):
+  * modified templates to dereference class parameters
+ 
+
+2012-05-26 Michael Arnold <github@razorsedge.org> - 1.0.1
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (1):
+  * Change github account to razorsedge
+ 
+
+2012-05-06 Michael Arnold <github@razorsedge.org> - 1.0.0
+=========================================================
+
+

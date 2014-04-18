@@ -21,6 +21,13 @@ class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
 
+class { 'snmp':
+  agentaddress => [ 'udp:161', ],
+  ro_community => 'public',
+  contact      => 'servicedesk@rely.nl',
+  location     => 'Beeld en Geluid',
+}
+
 class { '::vmwaretools':
   timesync => false,
   version  => '9.4.0-1280544',
