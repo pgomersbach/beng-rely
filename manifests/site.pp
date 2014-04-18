@@ -28,7 +28,7 @@ user { 'appbeheer':
 
 user { 'deploy':
   ensure   => present,
-  password => '$6$/9ib4x/n$92gZmU11nUPSZzI7sZ/7aroEhVRFiu8a1NXBouw6ljuClz6DkwCaEXOwpC6JWlvGKA7hh7C13kq94PcPh8Ds0',
+  password => '$6$XDXqfHBY$gTIaTau4Ic0awD2AVHTh4nP5QAShrItpqESFbN7bq6N2Kt/Alb34QQFDhQQbyy9pQgVpON5ZsqdZSPqTwZETZ',
 }
 
 user { 'systeembeheer':
