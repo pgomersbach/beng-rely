@@ -13,6 +13,10 @@ augeas { "sudowheel":
     ],
 }
 
+file {'/etc/resolv.conf':
+  source => 'puppet:///files/resolv.conf',
+}
+
 class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
