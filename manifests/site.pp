@@ -22,10 +22,15 @@ class { '::ntp':
 }
 
 class { 'vsftpd':
-  anonymous_enable  => 'NO',
-  write_enable      => 'YES',
-  ftpd_banner       => 'BenG FTP Server',
-  chroot_local_user => 'YES',
+  anonymous_enable   => 'NO',
+  write_enable       => 'YES',
+  ftpd_banner        => 'BenG FTP Server',
+  chroot_local_user  => 'YES',
+  chroot_list_enable => 'YES',
+}
+
+file { '/etc/vsftpd/chroot_list':
+  content => 'root',
 }
 
 user { 'appbeheer':
