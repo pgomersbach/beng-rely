@@ -22,14 +22,17 @@ class { '::ntp':
 }
 
 user { 'appbeheer':
-  ensure => present,
+  ensure   => present,
+  password => '$6$/9ib4x/n$92gZmU11nUPSZzI7sZ/7aroEhVRFiu8a1NXBouw6ljuClz6DkwCaEXOwpC6JWlvGKA7hh7C13kq94PcPh8Ds0',
 }
 
 user { 'deploy':
-  ensure => present,
+  ensure   => present,
+  password => '$6$/9ib4x/n$92gZmU11nUPSZzI7sZ/7aroEhVRFiu8a1NXBouw6ljuClz6DkwCaEXOwpC6JWlvGKA7hh7C13kq94PcPh8Ds0',
 }
 
 user { 'systeembeheer':
-  ensure => present,
+  ensure   => present,
+  password => '$6$/9ib4x/n$92gZmU11nUPSZzI7sZ/7aroEhVRFiu8a1NXBouw6ljuClz6DkwCaEXOwpC6JWlvGKA7hh7C13kq94PcPh8Ds0',
 }
 
