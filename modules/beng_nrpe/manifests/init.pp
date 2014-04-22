@@ -10,15 +10,6 @@ class beng_nrpe (
   $configurl="$baseurl/nrpe.cfg"
   $checkurl="$baseurl/bronze/local_commands.cfg"
 
-  file { '/usr/local/nrpe/etc/bronze/local_commands.cfg':
-    source => $checkurl,
-  }
-
-  file { '/usr/local/nrpe/etc/nrpe.cfg':
-    source => $configurl,
-  }
-
-
   notice("$baseurl")
   notice("$configurl")
   notice("$checkurl")
@@ -61,6 +52,14 @@ class beng_nrpe (
     provider => rpm,
     ensure   => installed,
     source   => "$rpmurl/vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm",
+  }->
+
+  exec{'retrieve_checks':
+    command => "/usr/bin/wget -q $checkurl -O /usr/local/nrpe/etc/bronze/local_commands.cfg",
+  }->
+
+  exec{'retrieve_config':
+    command => "/usr/bin/wget -q $configurl -O /usr/local/nrpe/etc/nrpe.cfg",
   }
 
 }
