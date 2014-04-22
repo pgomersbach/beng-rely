@@ -8,7 +8,7 @@ class beng_nrpe (
 ){
   $rpmurl="$baseurl/nrpe-complied-rhel6/"
   $configurl="$baseurl/nrpe.cfg"
-  $checkurl="$baseurl/bronze/local_commands.cfg
+  $checkurl="$baseurl/bronze/local_commands.cfg"
 
   file { '/usr/local/nrpe/etc/bronze/local_commands.cfg':
     source => $checkurl,
