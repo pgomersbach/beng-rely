@@ -9,20 +9,20 @@ class beng_nrpe (
   $configurl="${baseurl}/nrpe.cfg"
   $checkurl="${baseurl}/bronze/local_commands.cfg"
 
-  package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1', 'perl-Crypt-DES']:
+  package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
     ensure => installed,
-  }->
-
-  package { 'perl-Net-SNMP':
-    ensure   => installed,
-    provider => rpm,
-    source   => "${rpmurl}/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm",
   }->
 
   package { 'perl-Crypt-DES':
     ensure   => installed,
     provider => rpm,
     source   => "${rpmurl}/perl-Crypt-DES-2.05-9.el6.x86_64.rpm",
+  }->
+
+  package { 'perl-Net-SNMP':
+    ensure   => installed,
+    provider => rpm,
+    source   => "${rpmurl}/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm",
   }->
 
   package { 'vdl-nagios-common':
