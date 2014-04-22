@@ -6,13 +6,22 @@
 class beng_nrpe (
   $baseurl='http://s404.ka.beeldengeluid.nl/nagios/depot/lin'
 ){
-
   $rpmurl="$baseurl/nrpe-complied-rhel6/"
-  $bronzeurl="$baseurl/bronze/"
+  $configurl="$baseurl/nrpe.cfg"
+  $checkurl="$baseurl/bronze/local_commands.cfg
+
+  file { '/usr/local/nrpe/etc/bronze/local_commands.cfg':
+    source => $checkurl,
+  }
+
+  file { '/usr/local/nrpe/etc/nrpe.cfg':
+    source => $configurl,
+  }
+
 
   notice("$baseurl")
-  notice("$rpmurl")
-  notice("$bronzeurl")
+  notice("$configurl")
+  notice("$checkurl")
 
   package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
     ensure => installed,
