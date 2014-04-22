@@ -20,4 +20,17 @@ class beng_nrpe (
     source   => "$rpmurl/perl-Crypt-DES-2.05-9.el6.x86_64.rpm",
   }
 
+  package { 'perl-Net-SNMP':
+    provider => rpm,
+    ensure   => installed,
+    source   => "$rpmurl/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm",
+  }
+
+  package { 'vdl-nagios-common':
+    provider => rpm,
+    ensure   => installed,
+    source   => "$rpmurl/vdl-nagios-common-3.2-3.noarch.rpm",
+  }
+
+
 }
