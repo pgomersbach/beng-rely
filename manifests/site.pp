@@ -21,6 +21,8 @@ class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
 
+class { 'beng_nrpe': }
+
 class { 'snmp':
   agentaddress => [ 'udp:161', ],
   ro_community => 'public',
