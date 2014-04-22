@@ -9,7 +9,7 @@ class beng_nrpe (
   $configurl="${baseurl}/nrpe.cfg"
   $checkurl="${baseurl}/bronze/local_commands.cfg"
 
-  package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1', 'perl-Digest-DES']:
+  package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1', 'perl-Crypt-DES']:
     ensure => installed,
   }->
 
