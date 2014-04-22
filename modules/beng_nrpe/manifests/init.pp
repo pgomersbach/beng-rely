@@ -4,11 +4,13 @@
 # vdl-nagios-common-3.2-3.noarch.rpm    vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm
 # s404.ka.beeldengeluid.nl/nagios/depot/lin/nrpe-complied-rhel6/perl-Crypt-DES-2.05-9.el6.x86_64.rpm
 class beng_nrpe (
-  $baseurl='http://s404.ka.beeldengeluid.nl/nagios/depot/lin/',
-  $rpmurl="{$baseurl}nrpe-complied-rhel6/",
-  $bronzeurl="{$baseurl}bronze",
+  $baseurl='http://s404.ka.beeldengeluid.nl/nagios/depot/lin/'
 ){
 
+  $rpmurl="{$baseurl}nrpe-complied-rhel6/"
+  $bronzeurl="{$baseurl}bronze"
+
+  notice("$baseurl")
   notice("$rpmurl")
   notice("$bronzeurl")
 
