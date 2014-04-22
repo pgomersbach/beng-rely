@@ -14,16 +14,16 @@ class beng_nrpe (
   notice("$rpmurl")
   notice("$bronzeurl")
 
-  package { 'perl-Crypt-DES':
-    provider => rpm,
-    ensure   => installed,
-    source   => "$rpmurl/perl-Crypt-DES-2.05-9.el6.x86_64.rpm",
-  }
-
   package { 'perl-Net-SNMP':
     provider => rpm,
     ensure   => installed,
     source   => "$rpmurl/perl-Net-SNMP-5.2.0-4.el6.noarch.rpm",
+  }
+
+  package { 'perl-Crypt-DES':
+    provider => rpm,
+    ensure   => installed,
+    source   => "$rpmurl/perl-Crypt-DES-2.05-9.el6.x86_64.rpm",
   }
 
   package { 'vdl-nagios-common':
