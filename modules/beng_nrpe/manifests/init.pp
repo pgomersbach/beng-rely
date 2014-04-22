@@ -14,6 +14,10 @@ class beng_nrpe (
   notice("$rpmurl")
   notice("$bronzeurl")
 
+  package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
+    ensure => installed,
+  }
+
   package { 'perl-Net-SNMP':
     provider => rpm,
     ensure   => installed,
