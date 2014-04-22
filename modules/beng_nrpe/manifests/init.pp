@@ -16,7 +16,7 @@ class beng_nrpe (
 
   package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
     ensure => installed,
-  }
+  }->
 
   package { 'perl-Net-SNMP':
     provider => rpm,
