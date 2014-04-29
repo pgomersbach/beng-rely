@@ -1,5 +1,5 @@
 class beng_fw {
-  resources { "firewall":
+  resources { 'firewall':
     purge => true
   }
   Firewall {

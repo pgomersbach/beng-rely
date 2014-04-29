@@ -1,5 +1,9 @@
-# Default configuration
+# Default configuration BenG lab
+
+# Enable firewall
 include beng_fw
+
+# Create group and enable sudo
 group { 'wheel': ensure => present, }
 
 augeas { 'sudowheel':
@@ -13,14 +17,17 @@ augeas { 'sudowheel':
     ],
 }
 
+# Resolv to BenG DNS servers
 file {'/etc/resolv.conf':
   source => '/etc/puppet/files/resolv.conf',
 }
 
+# Enable network time protocol
 class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
 
+# Add host to BenG Nagios monitoring
 class { 'beng_nrpe': }
 
 class { 'snmp':
@@ -30,11 +37,13 @@ class { 'snmp':
   location     => 'Beeld en Geluid',
 }
 
+# Install vmware tools
 class { '::vmwaretools':
   timesync => false,
   version  => '9.4.0-1280544',
 }
 
+# Install vsftpd
 class { '::vsftpd':
   anonymous_enable   => 'NO',
   write_enable       => 'YES',
@@ -48,6 +57,7 @@ file { '/etc/vsftpd/chroot_list':
   require => Class['vsftpd'],
 }
 
+# Create default users 
 user { 'appbeheer':
   ensure     => present,
   password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
