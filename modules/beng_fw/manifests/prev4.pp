@@ -29,7 +29,8 @@ class beng_fw::prev4 (
   #  dport    => ${tcp_ports},
     dport => [ '20','21','22','53','80','123','443','445','1556','5666','9100','9200','13720','13724'],
     proto    => 'tcp',
-    source   => ${internal_nets},
+#    source   => ${internal_nets},
+    source => [ '172.18.0.0/16','172.19.0.0/16' ],
     action   => 'accept',
     provider => 'iptables',
   }
