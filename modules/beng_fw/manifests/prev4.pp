@@ -33,7 +33,6 @@ class beng_fw::prev4(
     provider => 'iptables',
   }
   firewall { '015 allow internal networks TCP range':
-#    dst_range => ${tcp_range},
     dport    => $tcp_range,
     proto    => 'tcp',
     source   => $internal_nets,
