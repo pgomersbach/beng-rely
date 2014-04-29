@@ -1,5 +1,5 @@
 # Default configuration
-
+include beng_fw
 group { 'wheel': ensure => present, }
 
 augeas { 'sudowheel':
