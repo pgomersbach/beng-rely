@@ -3,9 +3,9 @@ class beng_fw {
     purge => true
   }
   Firewall {
-    before  => Class['wufirewall::postv4'],
-    require => Class['wufirewall::prev4'],
+    before  => Class['beng_fw::postv4'],
+    require => Class['beng_fw::prev4'],
   }
-  class { ['wufirewall::prev4', 'wufirewall::postv4']: }
+  class { ['beng_fw::prev4', 'beng_fw::postv4']: }
   class { 'firewall': }
 }
