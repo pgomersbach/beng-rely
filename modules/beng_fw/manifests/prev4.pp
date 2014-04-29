@@ -35,16 +35,20 @@ class beng_fw::prev4 (
     provider => 'iptables',
   }
   firewall { '015 allow internal networks TCP range':
-    dst_range => ${tcp_range},
+#    dst_range => ${tcp_range},
+    dst_range => '9300:9400',
     proto    => 'tcp',
-    source   => ${internal_nets},
+#    source   => ${internal_nets},
+    source => [ '172.18.0.0/16','172.19.0.0/16' ],
     action   => 'accept',
     provider => 'iptables',
   }
   firewall { '020 allow internal networks UDP':
-    dport    => ${udp_ports},
+#    dport    => ${udp_ports},
+    dport => [ '53','123','161'],
     proto    => 'udp',
-    source   => ${internal_nets},
+#    source   => ${internal_nets},
+    source => [ '172.18.0.0/16','172.19.0.0/16' ],
     action   => 'accept',
     provider => 'iptables',
   }
