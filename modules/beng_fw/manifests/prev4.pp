@@ -1,6 +1,6 @@
 class beng_fw::prev4 (
   $internal_nets = [ '172.18.0.0/16','172.19.0.0/16' ],
-  $tcp_ports = [ '20','21','22','53','80','123','443','445','1556','5666','9100','9200','13720','13724'],
+#  $tcp_ports = [ '20','21','22','53','80','123','443','445','1556','5666','9100','9200','13720','13724'],
   $tcp_range = '9300:9400',
   $udp_ports = [ '53','123','161'],
 ){
@@ -26,7 +26,7 @@ class beng_fw::prev4 (
     provider => 'iptables',
   }
   firewall { '010 allow internal networks TCP':
-    dport    => ${tcp_ports},
+#    dport    => ${tcp_ports},
     proto    => 'tcp',
     source   => ${internal_nets},
     action   => 'accept',
