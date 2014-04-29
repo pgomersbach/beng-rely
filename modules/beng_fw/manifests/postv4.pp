@@ -25,7 +25,7 @@ class beng_fw::postv4 {
   }->
   firewall { '999 drop everything else - this is the failsafe rule':
     proto    => 'all',
-    actio n  => 'drop',
+    action   => 'drop',
     provider => 'iptables',
     before   => undef,
   }
