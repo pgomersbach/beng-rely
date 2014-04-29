@@ -33,6 +33,7 @@ class { 'beng_nrpe': }
 class { 'snmp':
   agentaddress => [ 'udp:161', ],
   ro_community => 'public',
+  ro_network   => $::network_eth0,
   contact      => 'servicedesk@rely.nl',
   location     => 'Beeld en Geluid',
 }
