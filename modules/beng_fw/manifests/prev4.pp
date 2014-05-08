@@ -1,7 +1,8 @@
 class beng_fw::prev4 (
   $internal_netA = '172.18.0.0/16',
   $internal_netB = '172.19.0.0/16',
-  $tcp_ports = [ '20','21','22','53','80','123','443','445','1556','5666','9100','9200','13720','13724'],
+  $internal_netC = '178.249.248.128/25',
+  $tcp_ports = [ '20','21','22','53','80','123','443','445','1556','5666','8000','8080','8081','8082','9100','9200','13720','13724'],
   $tcp_range = '9300-9400',
   $udp_ports = [ '53','123','161'],
 ){
@@ -39,8 +40,15 @@ class beng_fw::prev4 (
     source   => $internal_netB,
     action   => 'accept',
     provider => 'iptables',
+    }
+firewall { '012 allow internal netC TCP':
+    dport    => $tcp_ports,
+    proto    => 'tcp',
+    source   => $internal_netC,
+    action   => 'accept',
+    provider => 'iptables',
   }
-  firewall { '015 allow internal netA TCP range':
+ firewall { '015 allow internal netA TCP range':
     dport    => $tcp_range,
     proto    => 'tcp',
     source   => $internal_netA,
@@ -53,7 +61,15 @@ class beng_fw::prev4 (
     source   => $internal_netB,
     action   => 'accept',
     provider => 'iptables',
+    }
+firewall { '017 allow internal netC TCP range':
+    dport    => $tcp_range,
+    proto    => 'tcp',
+    source   => $internal_netC,
+    action   => 'accept',
+    provider => 'iptables',
   }
+
   firewall { '020 allow internal netA UDP':
     dport    => $udp_ports,
     proto    => 'udp',
@@ -67,5 +83,13 @@ class beng_fw::prev4 (
     source   => $internal_netB,
     action   => 'accept',
     provider => 'iptables',
-  }
+    } 
+firewall { '022 allow internal netC UDP':
+    dport    => $udp_ports,
+    proto    => 'udp',
+    source   => $internal_netC,
+    action   => 'accept',
+    provider => 'iptables',
+    }
+
 }
