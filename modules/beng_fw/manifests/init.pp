@@ -1,4 +1,6 @@
-class beng_fw {
+class beng_fw (
+    $tcp_public_ports = false,
+  ) {
   resources { 'firewall':
     purge => true
   }

@@ -3,6 +3,7 @@ class beng_fw::prev4 (
   $internal_netB = '172.19.0.0/16',
   $internal_netC = '178.249.248.128/25',
   $tcp_ports = [ '20','21','22','53','80','123','443','445','1556','5666','8000','9100','9200','13720','13724'],
+  $tcp_public_ports = $beng_fw::tcp_public_ports,
   $tcp_rangeA = '9300-9400',
   $tcp_rangeB = '8080-8082',
 
@@ -29,6 +30,16 @@ class beng_fw::prev4 (
     action   => 'accept',
     provider => 'iptables',
   }
+  
+  # Check if public ports should be allowed
+  if $tcp_public_ports != false {
+      firewall { '003 accept all TCP':
+      dport    => $tcp_public_ports,
+      proto    => 'tcp',
+      action   => 'accept',
+      provider => 'iptables',
+    }
+  }	
   firewall { '010 allow internal netA TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',

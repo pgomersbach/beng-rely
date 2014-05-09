@@ -1,7 +1,19 @@
 # Default configuration BenG lab
 
+
+# Check if host is a public webserver
+if $hostname =~ /^lbws[12]/ {
+  notice ( "Firewall: $hostname is a public server, opening outside ports" )
+  $tcp_public_ports = [ '80','443' ]
+} else {
+  notice ( "Firewall: $hostname is a private server, leaving outside ports closed" )
+  $tcp_public_ports = false
+}
+
 # Enable firewall
-include beng_fw
+class { 'beng_fw' :
+  tcp_public_ports => $tcp_public_ports,
+}
 
 # Create group and enable sudo
 group { 'wheel': ensure => present, }
