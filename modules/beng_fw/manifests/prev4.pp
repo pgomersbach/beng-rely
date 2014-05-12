@@ -116,7 +116,7 @@ class beng_fw::prev4 (
     source   => $internal_netB,
     action   => 'accept',
     provider => 'iptables',
-    } 
+    }
   firewall { '022 allow internal netC UDP':
     dport    => $udp_ports,
     proto    => 'udp',
