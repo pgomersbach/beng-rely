@@ -3,10 +3,10 @@
 
 # Check if host is a public webserver
 if $hostname =~ /^lbws[12]/ {
-  notice ( "Firewall: $hostname is a public server, opening outside ports" )
+  notice ( "Firewall: ${hostname} is a public server, opening outside ports" )
   $tcp_public_ports = [ '80','443' ]
 } else {
-  notice ( "Firewall: $hostname is a private server, leaving outside ports closed" )
+  notice ( "Firewall: ${hostname} is a private server, leaving outside ports closed" )
   $tcp_public_ports = false
 }
 
@@ -70,7 +70,7 @@ file { '/etc/vsftpd/chroot_list':
   require => Class['vsftpd'],
 }
 
-# Create default users 
+# Create default users
 user { 'appbeheer':
   ensure     => present,
   password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',

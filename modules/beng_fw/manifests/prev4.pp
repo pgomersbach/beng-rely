@@ -30,7 +30,6 @@ class beng_fw::prev4 (
     action   => 'accept',
     provider => 'iptables',
   }
-  
   # Check if public ports should be allowed
   if $tcp_public_ports != false {
       firewall { '003 accept all TCP':
@@ -39,7 +38,7 @@ class beng_fw::prev4 (
       action   => 'accept',
       provider => 'iptables',
     }
-  }	
+  }
   firewall { '010 allow internal netA TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
@@ -54,14 +53,14 @@ class beng_fw::prev4 (
     action   => 'accept',
     provider => 'iptables',
     }
-firewall { '012 allow internal netC TCP':
+  firewall { '012 allow internal netC TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
     source   => $internal_netC,
     action   => 'accept',
     provider => 'iptables',
   }
- firewall { '015 allow internal netA TCP range':
+  firewall { '015 allow internal netA TCP range':
     dport    => $tcp_rangeA,
     proto    => 'tcp',
     source   => $internal_netA,
@@ -75,14 +74,14 @@ firewall { '012 allow internal netC TCP':
     action   => 'accept',
     provider => 'iptables',
     }
-firewall { '017 allow internal netC TCP range':
+  firewall { '017 allow internal netC TCP range':
     dport    => $tcp_rangeA,
     proto    => 'tcp',
     source   => $internal_netC,
     action   => 'accept',
     provider => 'iptables',
     }
-firewall { '025 allow internal netA TCP rangeB':
+  firewall { '025 allow internal netA TCP rangeB':
     dport    => $tcp_rangeB,
     proto    => 'tcp',
     source   => $internal_netA,
@@ -96,14 +95,14 @@ firewall { '025 allow internal netA TCP rangeB':
     action   => 'accept',
     provider => 'iptables',
     }
-firewall { '027 allow internal netC TCP rangeB':
+  firewall { '027 allow internal netC TCP rangeB':
     dport    => $tcp_rangeB,
     proto    => 'tcp',
     source   => $internal_netC,
     action   => 'accept',
     provider => 'iptables',
     }
-# UDP rules
+  # UDP rules
   firewall { '020 allow internal netA UDP':
     dport    => $udp_ports,
     proto    => 'udp',
@@ -118,12 +117,12 @@ firewall { '027 allow internal netC TCP rangeB':
     action   => 'accept',
     provider => 'iptables',
     } 
-firewall { '022 allow internal netC UDP':
+  firewall { '022 allow internal netC UDP':
     dport    => $udp_ports,
     proto    => 'udp',
     source   => $internal_netC,
     action   => 'accept',
     provider => 'iptables',
-    }
+  }
 
 }
