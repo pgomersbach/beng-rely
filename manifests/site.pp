@@ -2,7 +2,7 @@
 
 
 # Check if host is a public webserver
-if $hostname =~ /^lbws[12]/ {
+if $hostname =~ /^l[bt]ws[12]/ {
   notice ( "Firewall: ${hostname} is a public server, opening outside ports" )
   $tcp_public_ports = [ '80','443' ]
 } else {
