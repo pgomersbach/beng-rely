@@ -1,5 +1,5 @@
 # Default configuration BenG lab
-
+$create_users=false
 
 # Check if host is a public webserver
 if $hostname =~ /^l[bt]ws[12]/ {
@@ -70,28 +70,30 @@ file { '/etc/vsftpd/chroot_list':
   require => Class['vsftpd'],
 }
 
+if $create_users == true {
 # Create default users
-user { 'appbeheer':
-  ensure     => present,
-  password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
-  groups     => 'wheel',
-  managehome => true,
-  require    => Group['wheel'],
-}
+  user { 'appbeheer':
+    ensure     => present,
+    password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
+    groups     => 'wheel',
+    managehome => true,
+    require    => Group['wheel'],
+  }
 
-user { 'deploy':
-  ensure     => present,
-  password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
-  groups     => 'wheel',
-  managehome => true,
-  require    => Group['wheel'],
-}
+  user { 'deploy':
+    ensure     => present,
+    password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
+    groups     => 'wheel',
+    managehome => true,
+    require    => Group['wheel'],
+  }
 
-user { 'systeembeheer':
-  ensure     => present,
-  password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
-  groups     => 'wheel',
-  managehome => true,
-  require    => Group['wheel'],
+  user { 'systeembeheer':
+    ensure     => present,
+    password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
+    groups     => 'wheel',
+    managehome => true,
+    require    => Group['wheel'],
+  }
 }
 
