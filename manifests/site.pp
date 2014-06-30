@@ -2,31 +2,40 @@
 $create_users=false
 
 # Check if host is a public webserver
-if $hostname =~ /^l[bt]ws[12]/ {
-  notice ( "Firewall: ${hostname} is a public server, opening outside ports" )
-  $tcp_public_ports = [ '80','443' ]
-} else {
-  notice ( "Firewall: ${hostname} is a private server, leaving outside ports closed" )
-  $tcp_public_ports = false
+case $hostname {
+  /^l[bt]ws[12]/ : {
+    notice ( "Firewall: ${hostname} is a public server, opening outside ports" )
+    $tcp_public_ports = [ '80','443' ]
+  }
+  default: {
+    notice ( "Firewall: ${hostname} is a private server, leaving outside ports closed" )
+    $tcp_public_ports = false
+  }
 }
 
 # Check if host is application server and port 8083 should be open
-if $hostname == 'ltws1' {
-  notice ( "Firewall: ${hostname} is a application server (test), opening 8083 for ltas1" )
-  $tcp_extra_rule1 = {
-    dport => '8083',
-    source => '178.249.248.154', #ltas1
-    src_range => undef,
+case $hostname {
+  'ltws1' : {
+    notice ( "Firewall: ${hostname} is a application server (test), opening 8083 for ltas1" )
+    $tcp_extra_rule1 = {
+      dport => '8083',
+      source => '178.249.248.154', #ltas1
+      src_range => undef,
+    }
   }
-} elsif $hostname =~ /^lbws[12]/ {
-  notice ( "Firewall: ${hostname} is a application server, opening 8083 for lbas1 and lbas2" )
-  $tcp_extra_rule1 = {
-    dport => '8083',
-    source => undef,
-    src_range => '178.249.248.152-178.249.248.153',
+
+  /^lbws[12]/ : {
+    notice ( "Firewall: ${hostname} is a application server, opening 8083 for lbas1 and lbas2" )
+    $tcp_extra_rule1 = {
+      dport => '8083',
+      source => undef,
+      src_range => '178.249.248.152-178.249.248.153',
+    }
   }
-} else {
-  $tcp_extra_rule1 = false
+
+  default: {
+    $tcp_extra_rule1 = false
+  }
 }
 
 # Enable firewall
