@@ -70,7 +70,7 @@ class beng_fw::prev4 (
   firewall { '015 allow internal netA TCP range':
     dport    => $tcp_rangeA_ports,
     proto    => 'tcp',
-    source   => $tcp_rangeA_source,
+    src_range => $tcp_rangeA_source,
     action   => 'accept',
     provider => 'iptables',
   }
