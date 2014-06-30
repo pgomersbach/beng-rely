@@ -32,6 +32,7 @@ if $hostname == 'ltws1' {
 # Enable firewall
 class { 'beng_fw' :
   tcp_public_ports => $tcp_public_ports,
+  tcp_extra_rule1  => $tcp_extra_rule1,
 }
 
 # Create group and enable sudo
