@@ -4,6 +4,7 @@ class beng_fw::prev4 (
   $internal_netC = '178.249.248.128/25',
   $tcp_ports = [ '20','21','22','53','80','123','443','445','1556','5666','8000','9100','9200','13720','13724'],
   $tcp_public_ports = $beng_fw::tcp_public_ports,
+  $tcp_extra_rule1 = $beng_fw::tcp_extra_rule1,
 
   $tcp_rangeA_ports = '9300-9400',
   $tcp_rangeA_source = '172.19.53.11-172.19.53.15', # lbes1,lbes2,lbes3,lbas1,lbas2 (Rely#1406 3254)

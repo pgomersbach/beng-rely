@@ -19,12 +19,14 @@ if $hostname == 'ltws1' {
     src_range => undef,
   }
 } elsif $hostname =~ /^lbws[12]/ {
-  notice ( "Firewall: ${hostname} is a application server (test), opening 8083 for lbas1 and lbas2" )
+  notice ( "Firewall: ${hostname} is a application server, opening 8083 for lbas1 and lbas2" )
   $tcp_extra_rule1 = {
     dport => '8083',
     source => undef,
     src_range => '178.249.248.152-178.249.248.153',
   }
+} else {
+  $tcp_extra_rule1 = false
 }
 
 # Enable firewall
