@@ -67,10 +67,22 @@ class beng_fw::prev4 (
     provider => 'iptables',
   }
 
+  # Check if extra rule 1 is specified
+  if $tcp_extra_rule1 != false {
+    firewall { '013 allow internal net TCP':
+      dport    => $tcp_extra_rule1[dport],
+      proto    => 'tcp',
+      source   => $tcp_extra_rule1[source],
+      src_range=> $tcp_extra_rule1[src_range],
+      action   => 'accept',
+      provider => 'iptables',
+    }
+  }
+
   firewall { '015 allow internal netA TCP range':
     dport    => $tcp_rangeA_ports,
     proto    => 'tcp',
-    src_range => $tcp_rangeA_source,
+    src_range=> $tcp_rangeA_source,
     action   => 'accept',
     provider => 'iptables',
   }

@@ -10,6 +10,23 @@ if $hostname =~ /^l[bt]ws[12]/ {
   $tcp_public_ports = false
 }
 
+# Check if host is application server and port 8083 should be open
+if $hostname == 'ltws1' {
+  notice ( "Firewall: ${hostname} is a application server (test), opening 8083 for ltas1" )
+  $tcp_extra_rule1 = {
+    dport => '8083',
+    source => '178.249.248.154', #ltas1
+    src_range => undef,
+  }
+} elsif $hostname =~ /^lbws[12]/ {
+  notice ( "Firewall: ${hostname} is a application server (test), opening 8083 for lbas1 and lbas2" )
+  $tcp_extra_rule1 = {
+    dport => '8083',
+    source => undef,
+    src_range => '178.249.248.152-178.249.248.153',
+  }
+}
+
 # Enable firewall
 class { 'beng_fw' :
   tcp_public_ports => $tcp_public_ports,
