@@ -36,6 +36,12 @@ case $hostname {
     $tcp_9300_source2 = '172.19.0.0/16',
     $tcp_9300_source3 = '178.249.248.128/25',
   }
+
+  default: {
+    $tcp_9300_source1 = false,
+    $tcp_9300_source2 = false,
+    $tcp_9300_source3 = false,
+  }
 }
 
 # Enable firewall
