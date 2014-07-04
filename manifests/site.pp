@@ -18,29 +18,29 @@ case $hostname {
   # LABS BETA
   /^lb[ea]s[123]/ : {
     notice ( "Firewall: ${hostname} - Applying 'beta' rules for 9300-9400" )
-    $tcp_9300_source1 = '172.19.53.0/24',
-    $tcp_9300_source2 = false,
-    $tcp_9300_source3 = false,
+    $tcp_9300_source1 = '172.19.53.0/24'
+    $tcp_9300_source2 = false
+    $tcp_9300_source3 = false
   }
   # LABS TEST
   /^lt[ea]s[12]/ : {
     notice ( "Firewall: ${hostname} - Applying 'test' rules for 9300-9400" )
-    $tcp_9300_source1 = '172.19.60.0/24',
-    $tcp_9300_source2 = false,
-    $tcp_9300_source3 = false,
+    $tcp_9300_source1 = '172.19.60.0/24'
+    $tcp_9300_source2 = false
+    $tcp_9300_source3 = false
   }
   # LABS DEVEL
   'ldes1' : {
     notice ( "Firewall: ${hostname} - Applying 'devel' rules for 9300-9400" )
-    $tcp_9300_source1 = '172.18.0.0/16',
-    $tcp_9300_source2 = '172.19.0.0/16',
-    $tcp_9300_source3 = '178.249.248.128/25',
+    $tcp_9300_source1 = '172.18.0.0/16'
+    $tcp_9300_source2 = '172.19.0.0/16'
+    $tcp_9300_source3 = '178.249.248.128/25'
   }
 
   default: {
-    $tcp_9300_source1 = false,
-    $tcp_9300_source2 = false,
-    $tcp_9300_source3 = false,
+    $tcp_9300_source1 = false
+    $tcp_9300_source2 = false
+    $tcp_9300_source3 = false
   }
 }
 
@@ -48,9 +48,9 @@ case $hostname {
 class { 'beng_fw' :
   tcp_public_ports => $tcp_public_ports,
   tcp_extra_rule1  => $tcp_extra_rule1,
-  tcp_rangeA_src1  = $tcp_9300_source1,
-  tcp_rangeA_src2  = $tcp_9300_source2,
-  tcp_rangeA_src3  = $tcp_9300_source3,
+  tcp_rangeA_src1  => $tcp_9300_source1,
+  tcp_rangeA_src2  => $tcp_9300_source2,
+  tcp_rangeA_src3  => $tcp_9300_source3,
 }
 
 # Create group and enable sudo
