@@ -2,7 +2,7 @@ class beng_fw::prev4 (
   $internal_netA    = '172.18.0.0/16',
   $internal_netB    = '172.19.0.0/16',
   $internal_netC    = '178.249.248.128/25',
-  $tcp_ports        = [ '20','21','22','80','443','445','1556','5666','8000','8086','8087','8011','8012','9100','9200','13720','13724' ],
+  $tcp_ports        = [ '20','21','22','80','443','445','1556','5666','8000','8011','8012','9100','9200','13720','13724' ],
   $tcp_public_ports = $beng_fw::tcp_public_ports,
   $tcp_extra_rule1  = $beng_fw::tcp_extra_rule1,
 
@@ -12,7 +12,7 @@ class beng_fw::prev4 (
   $tcp_rangeA_src2  = $beng_fw::tcp_9300_source2,
   $tcp_rangeA_src3  = $beng_fw::tcp_9300_source3,
 
-  $tcp_rangeB = '8080-8085',    # Extra prorts (8083-8085) added
+  $tcp_rangeB = '8080-8087',    # Extra ports (8083-8085) added, added 8086 and 807 to expand range 
 
   $udp_ports = [ '53','123','161'],
 ){
