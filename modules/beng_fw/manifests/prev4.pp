@@ -12,7 +12,7 @@ class beng_fw::prev4 (
   $tcp_rangeA_src2  = $beng_fw::tcp_9300_source2,
   $tcp_rangeA_src3  = $beng_fw::tcp_9300_source3,
 
-  $tcp_rangeB = '8080-8087',    # Extra ports (8083-8085) added, added 8086 and 807 to expand range 
+  $tcp_rangeB = '8080-8090',    # Extra ports (8080-8087) added, added 8088,9089 and 8090 to expand range topdesk call 1411 1218
 
   $udp_ports = [ '53','123','161'],
 ){
