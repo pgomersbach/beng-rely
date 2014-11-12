@@ -2,7 +2,7 @@ class beng_fw::prev4 (
   $internal_netA    = '172.18.0.0/16',
   $internal_netB    = '172.19.0.0/16',
   $internal_netC    = '178.249.248.128/25',
-  $tcp_ports        = [ '20','21','22','80','443','445','1556','5666','8000','8011','8012','9100','9200','13720','13724' ],
+  $tcp_ports        = [ '20','21','22','80','443','445','1556','5666','8000','9100','9200','13720','13724' ],
   $tcp_public_ports = $beng_fw::tcp_public_ports,
   $tcp_extra_rule1  = $beng_fw::tcp_extra_rule1,
 
@@ -13,7 +13,7 @@ class beng_fw::prev4 (
   $tcp_rangeA_src3  = $beng_fw::tcp_9300_source3,
 
   $tcp_rangeB = '8080-8090',    # Extra ports (8080-8087) added, added 8088,9089 and 8090 to expand range topdesk call 1411 1218
-
+  $tcp_rangeC = '8011-8015',    # Extra ports (8013-8015) added, consolidated with 8011 and 8012 as one range
   $udp_ports = [ '53','123','161'],
 ){
   Firewall {
@@ -135,6 +135,28 @@ class beng_fw::prev4 (
     provider => 'iptables',
   }
 
+# RANGE C
+  firewall { '035 allow internal netA TCP rangeC':
+    dport    => $tcp_rangeC,
+    proto    => 'tcp',
+    source   => $internal_netA,
+    action   => 'accept',
+    provider => 'iptables',
+  }
+  firewall { '036 allow internal netB TCP rangeC':
+    dport    => $tcp_rangeC,
+    proto    => 'tcp',
+    source   => $internal_netB,
+    action   => 'accept',
+    provider => 'iptables',
+  }
+  firewall { '037 allow internal netC TCP rangeC':
+    dport    => $tcp_rangeC,
+    proto    => 'tcp',
+    source   => $internal_netC,
+    action   => 'accept',
+    provider => 'iptables',
+  }
   # UDP rules
   firewall { '020 allow internal netA UDP':
     dport    => $udp_ports,
