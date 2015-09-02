@@ -49,6 +49,7 @@ class beng_fw::prev4 (
     }
   }
 
+  # Default TCP Ports
   firewall { '010 allow internal netA TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
@@ -135,7 +136,7 @@ class beng_fw::prev4 (
     provider => 'iptables',
   }
 
-# RANGE C
+  # RANGE C
   firewall { '035 allow internal netA TCP rangeC':
     dport    => $tcp_rangeC,
     proto    => 'tcp',
@@ -157,6 +158,7 @@ class beng_fw::prev4 (
     action   => 'accept',
     provider => 'iptables',
   }
+  
   # UDP rules
   firewall { '020 allow internal netA UDP':
     dport    => $udp_ports,
