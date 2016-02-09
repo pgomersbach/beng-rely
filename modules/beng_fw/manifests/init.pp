@@ -1,9 +1,12 @@
 class beng_fw (
     $tcp_public_ports = false,
+	$tcp_ports_global = false,
     $tcp_extra_rule1 = false,
     $tcp_rangeA_src1 = false,
     $tcp_rangeA_src2 = false,
     $tcp_rangeA_src3 = false,
+	$tcp_rangeB = false,
+	$tcp_rangeC = false,
   ) {
   resources { 'firewall':
     purge => true

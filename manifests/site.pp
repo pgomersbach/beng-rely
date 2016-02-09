@@ -44,13 +44,61 @@ case $hostname {
   }
 }
 
+# Default and extra tcp ports
+case $hostname {
+  /^(ltas1|lbas2)/ : {
+    notice ( "Firewall: ${hostname} - Applying 'extra tcp ports ('8161')' rule." )
+    $tcp_ports_global = [ '20','21','22','80','443','445','1556','5666','8000','8161','9100','9200','13720','13724' ]    # call A1601 692
+  }
+
+  default: {
+    notice ( "Firewall: ${hostname} - Using default tcp_ports rule." )
+    $tcp_ports_global = [ '20','21','22','80','443','445','1556','5666','8000','9100','9200','13720','13724' ]
+  }
+}
+
+# Extra ports B
+case $hostname {
+  # LABS TEST
+  /^ltas1/ : {
+    $tcp_rangeB = '8080-8092'     # Extra ports (8080-8087) added,
+                                  # added 8088,8089 and 8090 to expand range topdesk call 1411 1218
+                                  # added port 8091
+                                  # added port 8092, call 1509 251
+  }
+
+  /^lbas[12]/ : {
+    $tcp_rangeB = '8080-8092'     # Extra ports (8080-8087) added,
+                                  # added 8088,9089 and 8090 to expand range topdesk call 1411 1218
+                                  # added port 8091
+                                  # added port 8092, call 1509 251
+  }
+
+  default: {
+    $tcp_rangeB = '8080-8090'     # Extra ports (8080-8087) added,
+                                  # added 8088,9089 and 8090 to expand range topdesk call 1411 1218
+  }
+}
+
+
+# Extra Ports C
+case $hostname {
+  default: {
+    $tcp_rangeC = '8011-8015'     # Extra ports (8013-8015) added, consolidated with 8011 and 8012 as one range
+  }
+}
+
+
 # Enable firewall
 class { 'beng_fw' :
   tcp_public_ports => $tcp_public_ports,
+  tcp_ports_global => $tcp_ports_global,
   tcp_extra_rule1  => $tcp_extra_rule1,
   tcp_rangeA_src1  => $tcp_9300_source1,
   tcp_rangeA_src2  => $tcp_9300_source2,
   tcp_rangeA_src3  => $tcp_9300_source3,
+  tcp_rangeB       => $tcp_rangeB,
+  tcp_rangeC       => $tcp_rangeC,
 }
 
 # Create group and enable sudo
