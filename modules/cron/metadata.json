@@ -1,0 +1,46 @@
+{
+  "name": "rmueller-cron",
+  "version": "0.1.5",
+  "author": "rmueller",
+  "summary": "Module to manage cron jobs via /etc/cron.d/",
+  "license": "Apache-2.0",
+  "source": "https://github.com/roman-mueller/rmueller-cron",
+  "operatingsystem_support": [
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ],
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ],
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystemrelease": [
+        "14.04"
+      ],
+      "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystemrelease": [
+        "8"
+      ],
+      "operatingsystem": "Debian"
+    }
+  ],
+  "project_page": "https://github.com/roman-mueller/rmueller-cron",
+  "issues_url": "https://github.com/roman-mueller/rmueller-cron/issues",
+  "tags": [
+    "cron"
+  ],
+  "dependencies": [
+  
+  ]
+}
