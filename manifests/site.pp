@@ -1,5 +1,5 @@
 # Default configuration BenG lab
-$create_users=false
+# remarked out $create_users=false
 
 # Check if host is a public webserver
 case $hostname {
@@ -155,6 +155,20 @@ file { '/etc/vsftpd/chroot_list':
   content => 'root',
   require => Class['vsftpd'],
 }
+# set invidual host password creation enabled
+
+case $hostname {
+  /^(mws1)/ : {
+    notice ( "Password: ${hostname} - Applying rule." )
+	$create_users=true    
+  }
+
+  default: {
+    notice ( "Password: ${hostname} - Not applying Passwords." )
+ 	 $create_users=false 
+	}
+}
+
 
 if $create_users == true {
 # Create default users
