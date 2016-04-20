@@ -36,6 +36,12 @@ case $hostname {
     $tcp_9300_source2 = '172.19.0.0/16'
     $tcp_9300_source3 = '178.249.248.128/25'
   }
+ 'mws1' : {
+    notice ( "Firewall: ${hostname} - Applying 'beta' rules for 9300-9400" )
+    $tcp_9300_source1 = '172.19.53.0/24'
+    $tcp_9300_source2 = false
+    $tcp_9300_source3 = false
+  }
 
   default: {
     $tcp_9300_source1 = false
@@ -46,7 +52,7 @@ case $hostname {
 
 # Default and extra tcp ports
 case $hostname {
-  /^(ltas1|lbas2)/ : {
+  /^(ltas1|lbas2|mws1)/ : {
     notice ( "Firewall: ${hostname} - Applying 'extra tcp ports ('8161')' rule." )
     $tcp_ports_global = [ '20','21','22','80','443','445','1556','5666','8000','8161','9100','9200','13720','13724' ]    # call A1601 692
   }
