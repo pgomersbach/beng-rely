@@ -67,7 +67,7 @@ case $hostname {
 case $hostname {
   # LABS TEST
   /^ltas1/ : {
-    $tcp_rangeB = '8080-8092'     # Extra ports (8080-8087) added,
+    $tcp_rangeB = '8080-8093'     # Extra ports (8080-8087) added,
                                   # added 8088,8089 and 8090 to expand range topdesk call 1411 1218
                                   # added port 8091
                                   # added port 8092, call 1509 251
@@ -164,10 +164,10 @@ file { '/etc/vsftpd/chroot_list':
 # set invidual host password creation enabled
 
 case $hostname {
-  /^(mws1)/ : {
-    notice ( "Password: ${hostname} - Applying rule." )
-	$create_users=true    
-  }
+#  /^(mws1)/ : {
+#    notice ( "Password: ${hostname} - Applying rule." )
+#	$create_users=true    
+#  }
 
   default: {
     notice ( "Password: ${hostname} - Not applying Passwords." )
