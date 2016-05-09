@@ -66,7 +66,7 @@ case $hostname {
 # Extra ports B
 case $hostname {
   # LABS TEST
-  /^ltas1/ : {
+  /^(ltas1|lbas2)/ : {
     	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8093')' rule." )
 	$tcp_rangeB = '8080-8093'     # Extra ports (8080-8087) added,
                                   # added 8088,8089 and 8090 to expand range topdesk call 1411 1218
@@ -75,7 +75,7 @@ case $hostname {
 				  # added port 8093 call m1605 257
   }
 
-  /^lbas[12]/ : {
+  /^lbas1/ : {
     	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8092')' rule." )
 	$tcp_rangeB = '8080-8092'     # Extra ports (8080-8087) added,
                                   # added 8088,9089 and 8090 to expand range topdesk call 1411 1218
