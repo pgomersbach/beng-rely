@@ -71,6 +71,7 @@ case $hostname {
                                   # added 8088,8089 and 8090 to expand range topdesk call 1411 1218
                                   # added port 8091
                                   # added port 8092, call 1509 251
+				  # added port 8093 call m1605 257
   }
 
   /^lbas[12]/ : {
