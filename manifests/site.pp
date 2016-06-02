@@ -77,10 +77,11 @@ case $hostname {
 
   /^lbas1/ : {
     	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8092')' rule." )
-	$tcp_rangeB = '8080-8092'     # Extra ports (8080-8087) added,
+	$tcp_rangeB = '8080-8093'     # Extra ports (8080-8087) added,
                                   # added 8088,9089 and 8090 to expand range topdesk call 1411 1218
                                   # added port 8091
                                   # added port 8092, call 1509 251
+				  # added port 8093 call m1606 067
   }
 
   default: {
