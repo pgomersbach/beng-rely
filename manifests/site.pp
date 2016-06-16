@@ -143,7 +143,7 @@ class { 'snmp':
   agentaddress => [ 'udp:161', ],
   ro_community => 'public',
   ro_network   => '172.19.53.17',
-  contact      => 'servicedesk@rely.nl',
+  contact      => 'servicedesk@beeldengeluid.nl',
   location     => 'Beeld en Geluid',
 }
 
@@ -169,10 +169,10 @@ file { '/etc/vsftpd/chroot_list':
 # set invidual host password creation enabled
 
 case $hostname {
-#  /^(mws1)/ : {
-#    notice ( "Password: ${hostname} - Applying rule." )
-#	$create_users=true    
-#  }
+ /^(deploy2)/ : {
+    notice ( "Password: ${hostname} - Applying rule." )
+	$create_users=true    
+  }
 
   default: {
     notice ( "Password: ${hostname} - Not applying Passwords." )
