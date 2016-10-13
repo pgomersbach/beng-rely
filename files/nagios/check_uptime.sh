@@ -7,7 +7,7 @@
 #
 # versie 0.1, 20080318: overgenomen uit buglist comment 070126-8
 # versie 0.2, 20081117: variabelen beter gekozen, output uitgebreider
-#
+# versie 0.3  20161013: extra lokatie voor utils.sh
 # TODO: threshold evaluation
  
 if [ -f /opt/nrpe/bin/utils.sh ]
