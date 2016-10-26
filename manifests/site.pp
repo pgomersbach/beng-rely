@@ -67,21 +67,23 @@ case $hostname {
 case $hostname {
   # LABS TEST
   /^(ltas1|lbas2)/ : {
-    	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8093')' rule." )
-	$tcp_rangeB = '8080-8093'     # Extra ports (8080-8087) added,
+    	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8095')' rule." )
+	$tcp_rangeB = '8080-8095'     # Extra ports (8080-8087) added,
                                   # added 8088,8089 and 8090 to expand range topdesk call 1411 1218
                                   # added port 8091
                                   # added port 8092, call 1509 251
 				  # added port 8093 call m1605 257
+				  # added port 8094-8095 call m1610 1393
   }
 
   /^lbas1/ : {
-    	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8092')' rule." )
-	$tcp_rangeB = '8080-8093'     # Extra ports (8080-8087) added,
+    	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8095')' rule." )
+	$tcp_rangeB = '8080-8095'     # Extra ports (8080-8087) added,
                                   # added 8088,9089 and 8090 to expand range topdesk call 1411 1218
                                   # added port 8091
                                   # added port 8092, call 1509 251
 				  # added port 8093 call m1606 067
+				  # added port 8094-8095 call m1610 1393
   }
 
   default: {
@@ -169,7 +171,7 @@ file { '/etc/vsftpd/chroot_list':
 # set invidual host password creation enabled
 
 case $hostname {
- /^(deploy2)/ : {
+ /^(deploy5)/ : {
     notice ( "Password: ${hostname} - Applying rule." )
 	$create_users=true    
   }
