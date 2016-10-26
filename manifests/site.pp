@@ -152,8 +152,8 @@ class { 'snmp':
 # Install vmware tools
 class { '::vmwaretools':
   timesync => false,
-  version  => '10.0.9.55972',
-#  version  => '10.0.9-3917699',
+#  version  => '10.0.9.55972',
+  version  => '10.0.9-3917699',
 #  version  => '9.4.0-1280544', previsou version
 }
 
