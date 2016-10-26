@@ -4,12 +4,16 @@
 require 'facter'
 
 Facter.add(:vmwaretools_version) do
-  confine :virtual => :vmware
   setcode do
     if File::executable?("/usr/bin/vmware-toolbox-cmd")
       result = Facter::Util::Resolution.exec("/usr/bin/vmware-toolbox-cmd -v")
       if result
-        result.sub(%r{(\d*\.\d*\.\d*)\.\d*\s+\(build(-\d*)\)},'\1\2')
+        version = result.sub(%r{(\d*\.\d*\.\d*)\.\d*\s+\(build(-\d*)\)},'\1\2')
+        if version.empty? or version.nil?
+          'unknown'
+        else
+          version
+        end
       else
         "not installed"
       end
