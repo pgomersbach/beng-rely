@@ -177,6 +177,10 @@ case $hostname {
     notice ( "Password: ${hostname} - Applying rule." )
 	$create_users=true    
   }
+/^(dev[wae]s2001)/ : {
+    notice ( "Password: ${hostname} - Applying rule." )
+	$create_users=true    
+  }
 
   default: {
     notice ( "Password: ${hostname} - Not applying Passwords." )
