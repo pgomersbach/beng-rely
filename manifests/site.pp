@@ -155,7 +155,7 @@ class { '::vmwaretools':
   timesync => false,
 # version is VMwareTools-<version.build number>.tar  aka VMwareTools-10.1.7-5541682.tar
 #  version  => '10.0.9-3917699',
-  version => '10.1.7.5541682',
+  version => '10.1.7.61298',
 # actual version is 10.1.7.61298 (build-5541682)
 
 }
