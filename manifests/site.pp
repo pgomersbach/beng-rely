@@ -67,13 +67,14 @@ case $hostname {
 case $hostname {
   # LABS TEST
   /^(ltas1|lbas2)/ : {
-    	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8095')' rule." )
-	$tcp_rangeB = '8080-8095'     # Extra ports (8080-8087) added,
+    	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8096')' rule." )
+	$tcp_rangeB = '8080-8096'     # Extra ports (8080-8087) added,
                                   # added 8088,8089 and 8090 to expand range topdesk call 1411 1218
                                   # added port 8091
                                   # added port 8092, call 1509 251
 				  # added port 8093 call m1605 257
 				  # added port 8094-8095 call m1610 1393
+				  # added port in range to extrend to 8096 m1707 919
   }
 
   /^lbas1/ : {
@@ -179,7 +180,7 @@ case $hostname {
   }
 /^(dev[wae]s2001)/ : {
     notice ( "Password: ${hostname} - Applying rule." )
-	$create_users=true    
+	$create_users2001=true    
   }
 
   default: {
@@ -210,6 +211,36 @@ if $create_users == true {
   user { 'systeembeheer':
     ensure     => present,
     password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
+    groups     => 'wheel',
+    managehome => true,
+    require    => Group['wheel'],
+  }
+}
+if $create_useris2001 == true {
+# Create default users
+#deploy2001:$6$TcjVG0JT$6rW9JAxlgtxZgMq9XrWFuKEktPZ4N5cru1cRiU585PhajHwLtyBvaMRqsCBsgJyOAKdFeM/E0O0aZiNkX2yv10:17352:0:99999:7:::
+#systeembeheer2001:$6$EoJD7C5n$dF91rI2qEL/CtPMGompYnI5vwxRXa1w.CO3A9.n5voPwBT67kzOkBsKQcA0T7JGy.OPXcit/NxzObhfkI8na/0:17352:0:99999:7:::
+#appbeheer2001:$6$GJ2gWWKE$viMcJ37nL1gHqLroZKBt.T6Sb2xvkVsDXTBYqSSiZDH3FGv5FX01YKnvUFqQjvGSM843/s92GcSu90aEQLEFq1:17352:0:99999:7:::
+
+  user { 'appbeheer2001':
+    ensure     => present,
+    password   => '$6$GJ2gWWKE$viMcJ37nL1gHqLroZKBt.T6Sb2xvkVsDXTBYqSSiZDH3FGv5FX01YKnvUFqQjvGSM843/s92GcSu90aEQLEFq1',
+    groups     => 'wheel',
+    managehome => true,
+    require    => Group['wheel'],
+  }
+
+  user { 'deploy2001':
+    ensure     => present,
+    password   => '$6$TcjVG0JT$6rW9JAxlgtxZgMq9XrWFuKEktPZ4N5cru1cRiU585PhajHwLtyBvaMRqsCBsgJyOAKdFeM/E0O0aZiNkX2yv10',
+    groups     => 'wheel',
+    managehome => true,
+    require    => Group['wheel'],
+  }
+
+  user { 'systeembeheer2001':
+    ensure     => present,
+    password   => '$6$EoJD7C5n$dF91rI2qEL/CtPMGompYnI5vwxRXa1w.CO3A9.n5voPwBT67kzOkBsKQcA0T7JGy.OPXcit/NxzObhfkI8na/0',
     groups     => 'wheel',
     managehome => true,
     require    => Group['wheel'],
