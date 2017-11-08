@@ -52,14 +52,14 @@ case $hostname {
 
 # Default and extra tcp ports
 case $hostname {
-  /^(ltas1|lbas2|mws1)/ : {
-    notice ( "Firewall: ${hostname} - Applying 'extra tcp ports ('8161')' rule." )
-    $tcp_ports_global = [ '20','21','22','80','443','445','1556','5666','8000','8161','9100','9200','13720','13724' ]    # call A1601 692
+  /^(ltas1|lbas[123]|mws1)/ : {
+    notice ( "Firewall: ${hostname} - Applying 'extra tcp ports ('18061 and 8161')' rule." )
+    $tcp_ports_global = [ '21','22','80','443','445','1556','5666','8000','8161','9100','9200','13720','13724','18086' ]    # call A1601 692 m1710 1445
   }
 
   default: {
     notice ( "Firewall: ${hostname} - Using default tcp_ports rule." )
-    $tcp_ports_global = [ '20','21','22','80','443','445','1556','5666','8000','9100','9200','13720','13724' ]
+    $tcp_ports_global = [ '21','22','80','443','445','1556','5666','8000','9100','9200','13720','13724' ]
   }
 }
 
