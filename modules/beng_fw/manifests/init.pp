@@ -7,6 +7,9 @@ class beng_fw (
     $tcp_rangeA_src3 = false,
 	$tcp_rangeB = false,
 	$tcp_rangeC = false,
+	$tcp_rangeD = false,
+	$tcp_rangeE = false,
+	
   ) {
   resources { 'firewall':
     purge => true
