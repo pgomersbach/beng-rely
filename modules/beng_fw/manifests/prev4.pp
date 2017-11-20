@@ -164,7 +164,7 @@ firewall { '008 allow internal netE TCP':
     provider => 'iptables',
   }
  # Mam network added 20/11/2017 
-  firewall { '028 allow internal netD TCP rangeB':
+  firewall { '029 allow internal netE TCP rangeB':
     dport    => $tcp_rangeB,
     proto    => 'tcp',
     source   => $internal_netE,
