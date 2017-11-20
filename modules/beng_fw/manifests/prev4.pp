@@ -3,6 +3,7 @@ class beng_fw::prev4 (
   $internal_netB    = '172.19.0.0/16',
   $internal_netC    = '178.249.248.128/25',
   $internal_netD    = '192.168.20.0/23',
+  $internal_netE    = '10.100.10.0/24',
   $tcp_ports        = $beng_fw::tcp_ports_global, # Now defined in site.pp (09-02-2016)
   $tcp_public_ports = $beng_fw::tcp_public_ports,
   $tcp_extra_rule1  = $beng_fw::tcp_extra_rule1,
@@ -51,21 +52,21 @@ class beng_fw::prev4 (
   }
 
   # Default TCP Ports
-  firewall { '010 allow internal netA TCP':
+  firewall { '005 allow internal netA TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
     source   => $internal_netA,
     action   => 'accept',
     provider => 'iptables',
   }
-  firewall { '011 allow internal netB TCP':
+  firewall { '006 allow internal netB TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
     source   => $internal_netB,
     action   => 'accept',
     provider => 'iptables',
   }
-  firewall { '012 allow internal netC TCP':
+  firewall { '007 allow internal netC TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
     source   => $internal_netC,
@@ -73,13 +74,23 @@ class beng_fw::prev4 (
     provider => 'iptables',
   }
 # Museum network added 20/12/2016 
-firewall { '013 allow internal netD TCP':
+firewall { '008 allow internal netD TCP':
     dport    => $tcp_ports,
     proto    => 'tcp',
     source   => $internal_netD,
     action   => 'accept',
     provider => 'iptables',
   }
+# Mam network added 20/11/2017 
+firewall { '008 allow internal netE TCP':
+    dport    => $tcp_ports,
+    proto    => 'tcp',
+    source   => $internal_netE,
+    action   => 'accept',
+    provider => 'iptables',
+  }
+
+
 
   # Check if extra rule 1 is specified
   if is_hash($tcp_extra_rule1) {
@@ -152,6 +163,14 @@ firewall { '013 allow internal netD TCP':
     action   => 'accept',
     provider => 'iptables',
   }
+ Mam network added 20/11/2017 
+  firewall { '028 allow internal netD TCP rangeB':
+    dport    => $tcp_rangeB,
+    proto    => 'tcp',
+    source   => $internal_netE,
+    action   => 'accept',
+    provider => 'iptables',
+  }
 
   # RANGE C
   firewall { '035 allow internal netA TCP rangeC':
@@ -183,6 +202,15 @@ firewall { '013 allow internal netD TCP':
     action   => 'accept',
     provider => 'iptables',
   }
+ Mam network added 20/11/2017 
+  firewall { '039 allow internal nete TCP rangeC':
+    dport    => $tcp_rangeC,
+    proto    => 'tcp',
+    source   => $internal_netE,
+    action   => 'accept',
+    provider => 'iptables',
+  }
+
 
   # UDP rules
   firewall { '020 allow internal netA UDP':
@@ -214,4 +242,13 @@ firewall { '023 allow internal netD UDP':
     action   => 'accept',
     provider => 'iptables',
   }
+  # Mam network added 20/11/2017 
+firewall { '024 allow internal netD UDP':
+    dport    => $udp_ports,
+    proto    => 'udp',
+    source   => $internal_netE,
+    action   => 'accept',
+    provider => 'iptables',
+  }
+  
 }
