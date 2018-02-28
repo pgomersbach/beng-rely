@@ -48,14 +48,14 @@ class beng_nrpe (
     provider => rpm,
     source   => "${rpmurl}/vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm",
   }->
-
+  notice (" NRPE: checking local command file '$checkurl'.")
   file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
     ensure => file,
     source => "$checkurl",
     owner => 'nagios',
     group => 'root',
     notify  => Service [ 'nrpe' ],
-    notice (" NRPE: checking local command file '$checkurl'.")
+    
   }->
   file {'/usr/local/nrpe/etc/nrpe.cfg':
     ensure => file,
