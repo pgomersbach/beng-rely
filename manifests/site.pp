@@ -1,6 +1,5 @@
 # Default configuration BenG lab
 # remarked out $create_users=false
-
 # Check if host is a public webserver
 case $hostname {
   /^l[bt]ws[12]/ : {
@@ -12,7 +11,6 @@ case $hostname {
     $tcp_public_ports = false
   }
 }
-
 # 9300-9400 source rule set
 case $hostname {
   # LABS BETA
@@ -42,7 +40,6 @@ case $hostname {
     $tcp_9300_source2 = false
     $tcp_9300_source3 = false
   }
-
   default: {
     $tcp_9300_source1 = false
     $tcp_9300_source2 = false
@@ -60,13 +57,11 @@ case $hostname {
     notice ( "Firewall: ${hostname} - Applying 'extra tcp port  ('3306')' rule at ltes1 and lbes3 ." )
     $tcp_ports_global = [ '21','22','80','443','445','1556','3306','5666','8000','9100','9200','13720','13724' ]    # call m1711 960
   }
-
   default: {
     notice ( "Firewall: ${hostname} - Using default tcp_ports rule." )
     $tcp_ports_global = [ '21','22','80','443','445','1556','5666','8000','9100','9200','13720','13724' ]
   }
 }
-
 # Extra ports B
 case $hostname {
   # LABS TEST
@@ -93,23 +88,18 @@ case $hostname {
 				  # added port 8093 call m1606 067
 				  # added port 8094-8095 call m1610 1393
   }
-
   default: {
     	 notice ( "Firewall: ${hostname} - Applying ' RangeB tcp ports ('8080-8090')' rule." )
 	$tcp_rangeB = '8080-8090'     # Extra ports (8080-8087) added,
                                   # added 8088,9089 and 8090 to expand range topdesk call 1411 1218
   }
 }
-
-
 # Extra Ports C
 case $hostname {
   default: {
     $tcp_rangeC = '8011-8015'     # Extra ports (8013-8015) added, consolidated with 8011 and 8012 as one range
   }
 }
-
-
 # Enable firewall
 class { 'beng_fw' :
   tcp_public_ports => $tcp_public_ports,
@@ -121,10 +111,8 @@ class { 'beng_fw' :
   tcp_rangeB       => $tcp_rangeB,
   tcp_rangeC       => $tcp_rangeC,
 }
-
 # Create group and enable sudo
 group { 'wheel': ensure => present, }
-
 augeas { 'sudowheel':
   context => '/files/etc/sudoers',
   changes => [
@@ -135,20 +123,17 @@ augeas { 'sudowheel':
     "set spec[user = '%wheel']/host_group/command/tag NOPASSWD",
     ],
 }
-
 # Resolv to BenG DNS servers
 file {'/etc/resolv.conf':
   source => '/etc/puppet/files/resolv.conf',
 }
-
 # Enable network time protocol
 class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
-
 # Add host to BenG Nagios monitoring
 class { 'beng_nrpe': }
-
+# setup snmp
 class { 'snmp':
   agentaddress => [ 'udp:161', ],
   ro_community => 'public',
@@ -156,17 +141,14 @@ class { 'snmp':
   contact      => 'servicedesk@beeldengeluid.nl',
   location     => 'Beeld en Geluid',
 }
-
 # Install vmware tools
 class { '::vmwaretools':
   timesync => false,
 # version is VMwareTools-<version.build number>.tar  aka VMwareTools-10.1.7-5541682.tar
 #  version  => '10.0.9-3917699',
-  version => '10.1.7.61298',
 # actual version is 10.1.7.61298 (build-5541682)
-
+  version => '10.1.7.61298',
 }
-
 # Install vsftpd
 class { '::vsftpd':
   anonymous_enable   => 'NO',
@@ -175,13 +157,11 @@ class { '::vsftpd':
   chroot_local_user  => 'YES',
   chroot_list_enable => 'YES',
 }
-
 file { '/etc/vsftpd/chroot_list':
   content => 'root',
   require => Class['vsftpd'],
 }
 # set invidual host password creation enabled
-
 case $hostname {
  /^(deploy5)/ : {
     notice ( "Password: ${hostname} - Applying rule." )
@@ -191,14 +171,12 @@ case $hostname {
     notice ( "Password: ${hostname} - Applying rule." )
 	$create_users2001=true    
   }
-
   default: {
     notice ( "Password: ${hostname} - Not applying Passwords." )
  	 $create_users=false 
 	}
 }
-
-
+# creat the actual users
 if $create_users == true {
 # Create default users
   user { 'appbeheer':
@@ -208,7 +186,6 @@ if $create_users == true {
     managehome => true,
     require    => Group['wheel'],
   }
-
   user { 'deploy':
     ensure     => present,
     password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
@@ -216,7 +193,6 @@ if $create_users == true {
     managehome => true,
     require    => Group['wheel'],
   }
-
   user { 'systeembeheer':
     ensure     => present,
     password   => '$6$whFu5R20$VZYxY42iExf8nd8yDIwXz6.K9D68BsreDcBUi9mqjO02x.m6i1HuD/uuHViqHvbWh.19.jDoMcMKOo1rtNaja.',
@@ -227,10 +203,6 @@ if $create_users == true {
 }
 if $create_useris2001 == true {
 # Create default users
-#deploy2001:$6$TcjVG0JT$6rW9JAxlgtxZgMq9XrWFuKEktPZ4N5cru1cRiU585PhajHwLtyBvaMRqsCBsgJyOAKdFeM/E0O0aZiNkX2yv10:17352:0:99999:7:::
-#systeembeheer2001:$6$EoJD7C5n$dF91rI2qEL/CtPMGompYnI5vwxRXa1w.CO3A9.n5voPwBT67kzOkBsKQcA0T7JGy.OPXcit/NxzObhfkI8na/0:17352:0:99999:7:::
-#appbeheer2001:$6$GJ2gWWKE$viMcJ37nL1gHqLroZKBt.T6Sb2xvkVsDXTBYqSSiZDH3FGv5FX01YKnvUFqQjvGSM843/s92GcSu90aEQLEFq1:17352:0:99999:7:::
-
   user { 'appbeheer2001':
     ensure     => present,
     password   => '$6$GJ2gWWKE$viMcJ37nL1gHqLroZKBt.T6Sb2xvkVsDXTBYqSSiZDH3FGv5FX01YKnvUFqQjvGSM843/s92GcSu90aEQLEFq1',
@@ -238,7 +210,6 @@ if $create_useris2001 == true {
     managehome => true,
     require    => Group['wheel'],
   }
-
   user { 'deploy2001':
     ensure     => present,
     password   => '$6$TcjVG0JT$6rW9JAxlgtxZgMq9XrWFuKEktPZ4N5cru1cRiU585PhajHwLtyBvaMRqsCBsgJyOAKdFeM/E0O0aZiNkX2yv10',
@@ -246,7 +217,6 @@ if $create_useris2001 == true {
     managehome => true,
     require    => Group['wheel'],
   }
-
   user { 'systeembeheer2001':
     ensure     => present,
     password   => '$6$EoJD7C5n$dF91rI2qEL/CtPMGompYnI5vwxRXa1w.CO3A9.n5voPwBT67kzOkBsKQcA0T7JGy.OPXcit/NxzObhfkI8na/0',
@@ -255,4 +225,3 @@ if $create_useris2001 == true {
     require    => Group['wheel'],
   }
 }
-
