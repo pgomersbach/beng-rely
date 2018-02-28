@@ -3,12 +3,13 @@
 #Install local nrpe checks
 
 class beng_nrpe (
-  $baseurl='/etc/puppet/files/'
+  $baseurl='/etc/puppet/files'
 ){
   $rpmurl="${baseurl}/nrpe-complied-rhel6/"
   $configurl="${baseurl}/nrpe.cfg"
   $checkurl="${baseurl}/local_commands.cfg"
-
+notice (" NRPE: checking local command file '$checkurl'.")
+notice (" NRPE: checking nrpe config file '$configurl'.")
   package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
     ensure => installed,
   }->
@@ -48,8 +49,7 @@ class beng_nrpe (
     provider => rpm,
     source   => "${rpmurl}/vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm",
   }->
-  notice (" NRPE: checking local command file '$checkurl'.")
-  file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
+ file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
     ensure => file,
     source => "$checkurl",
     owner => 'nagios',
