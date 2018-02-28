@@ -50,11 +50,18 @@ class beng_nrpe (
   }->
 
   file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
+    ensure => file,
     source => "$checkurl",
+    owner => 'nagios',
+    group => 'root',
     notify  => Service [ 'nrpe' ],
+    notice (" NRPE: checking local command file '$checkurl'.")
   }->
   file {'/usr/local/nrpe/etc/nrpe.cfg':
+    ensure => file,
     source => "$configurl",
+    owner => 'nagios',
+    group => 'root',
     notify  => Service [ 'nrpe' ],
   }
  
