@@ -50,11 +50,11 @@ class beng_nrpe (
   }->
 
   file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
-    source => '/etc/puppet/files/local_commands.cfg',
+    source => $checkurl,
     notify  => Service [ 'nrpe' ],
   }->
   file {'/usr/local/nrpe/etc/nrpe.cfg':
-    source => '/etc/puppet/files/nrpe.cfg',
+    source => $configurl,
     notify  => Service [ 'nrpe' ],
   }
  
