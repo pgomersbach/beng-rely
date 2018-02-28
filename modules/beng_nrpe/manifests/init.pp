@@ -55,8 +55,7 @@ class beng_nrpe (
     owner => 'nagios',
     group => 'root',
     notify  => Service [ 'nrpe' ],
-    
-  }->
+   }->
   file {'/usr/local/nrpe/etc/nrpe.cfg':
     ensure => file,
     source => "$configurl",
