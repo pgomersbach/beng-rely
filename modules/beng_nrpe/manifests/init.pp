@@ -53,12 +53,11 @@ class beng_nrpe (
     command => "/usr/bin/wget -q ${checkurl} -O /usr/local/nrpe/etc/bronze/local_commands.cfg",
     notify  => Service [ 'nrpe' ],
   }->
-
-  exec{ 'retrieve_config':
-    command => "/usr/bin/wget -q ${configurl} -O /usr/local/nrpe/etc/nrpe.cfg",
+  file {'/usr/local/nrpe/etc/nrpe.cfg':
+    source => '/etc/puppet/files/nrpe.cfg',
     notify  => Service [ 'nrpe' ],
   }
-
+ 
   service { 'nrpe':
     ensure => running,
   }
