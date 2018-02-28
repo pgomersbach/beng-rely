@@ -133,7 +133,7 @@ class { '::ntp':
 }
 # Add host to BenG Nagios monitoring
 class { 'beng_nrpe': 
-notice ( " NRPE Checking/ Applying needed config files." );
+#notice ( " NRPE Checking/ Applying needed config files." )
 }
 # setup snmp
 class { 'snmp':
