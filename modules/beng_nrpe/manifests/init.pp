@@ -49,8 +49,8 @@ class beng_nrpe (
     source   => "${rpmurl}/vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm",
   }->
 
-  exec{ 'retrieve_checks':
-    command => "/usr/bin/wget -q ${checkurl} -O /usr/local/nrpe/etc/bronze/local_commands.cfg",
+  file {'/usr/local/nrpe/etc/bronze/local_commands.cfg'
+    source => '/etc/puppet/files/local_commands.cfg',
     notify  => Service [ 'nrpe' ],
   }->
   file {'/usr/local/nrpe/etc/nrpe.cfg':
