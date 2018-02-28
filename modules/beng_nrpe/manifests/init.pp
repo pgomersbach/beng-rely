@@ -49,7 +49,7 @@ class beng_nrpe (
     source   => "${rpmurl}/vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm",
   }->
 
-  file {'/usr/local/nrpe/etc/bronze/local_commands.cfg'
+  file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
     source => '/etc/puppet/files/local_commands.cfg',
     notify  => Service [ 'nrpe' ],
   }->
