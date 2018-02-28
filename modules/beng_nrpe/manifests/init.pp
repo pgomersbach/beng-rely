@@ -3,11 +3,11 @@
 #Install local nrpe checks
 
 class beng_nrpe (
-  $baseurl='http://s404.ka.beeldengeluid.nl/nagios/depot/lin'
+  $baseurl='/etc/puppet/files/'
 ){
   $rpmurl="${baseurl}/nrpe-complied-rhel6/"
   $configurl="${baseurl}/nrpe.cfg"
-  $checkurl="${baseurl}/bronze/local_commands.cfg"
+  $checkurl="${baseurl}/local_commands.cfg"
 
   package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
     ensure => installed,
