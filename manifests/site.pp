@@ -132,7 +132,9 @@ class { '::ntp':
   servers => [ '172.18.99.210', '172.18.99.211' ],
 }
 # Add host to BenG Nagios monitoring
-class { 'beng_nrpe': }
+class { 'beng_nrpe': 
+notice ( "NRPE: Checking/ Applying needed config files." )
+}
 # setup snmp
 class { 'snmp':
   agentaddress => [ 'udp:161', ],
