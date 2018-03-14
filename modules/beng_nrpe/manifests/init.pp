@@ -3,12 +3,13 @@
 #Install local nrpe checks
 
 class beng_nrpe (
-  $baseurl='http://s404.ka.beeldengeluid.nl/nagios/depot/lin'
+  $baseurl='/etc/puppet/files'
 ){
   $rpmurl="${baseurl}/nrpe-complied-rhel6/"
   $configurl="${baseurl}/nrpe.cfg"
-  $checkurl="${baseurl}/bronze/local_commands.cfg"
-
+  $checkurl="${baseurl}/local_commands.cfg"
+notice (" NRPE: checking local command file '$checkurl'.")
+notice (" NRPE: checking nrpe config file '$configurl'.")
   package { [ 'perl-Digest-HMAC', 'perl-Digest-SHA1']:
     ensure => installed,
   }->
@@ -48,17 +49,21 @@ class beng_nrpe (
     provider => rpm,
     source   => "${rpmurl}/vdl-nrpe-plugin-2.12-4.x86_64.redhat.rpm",
   }->
-
-  exec{ 'retrieve_checks':
-    command => "/usr/bin/wget -q ${checkurl} -O /usr/local/nrpe/etc/bronze/local_commands.cfg",
+ file {'/usr/local/nrpe/etc/bronze/local_commands.cfg':
+    ensure => file,
+    source => "$checkurl",
+    owner => 'nagios',
+    group => 'root',
     notify  => Service [ 'nrpe' ],
-  }->
-
-  exec{ 'retrieve_config':
-    command => "/usr/bin/wget -q ${configurl} -O /usr/local/nrpe/etc/nrpe.cfg",
+   }->
+  file {'/usr/local/nrpe/etc/nrpe.cfg':
+    ensure => file,
+    source => "$configurl",
+    owner => 'nagios',
+    group => 'root',
     notify  => Service [ 'nrpe' ],
   }
-
+ 
   service { 'nrpe':
     ensure => running,
   }
